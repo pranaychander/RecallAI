@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RecallAI | Master Your Mind</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-error-container": "#ffdad6",
+                "secondary": "#4edea3",
+                "background": "#13131b",
+                "inverse-surface": "#e4e1ed",
+                "surface-container-high": "#292932",
+                "primary-fixed-dim": "#c0c1ff",
+                "secondary-container": "#00a572",
+                "background": "#13131b",
+                "outline-variant": "#464554",
+                "on-secondary-fixed-variant": "#005236",
+                "on-tertiary": "#472a00",
+                "inverse-primary": "#494bd6",
+                "on-primary-container": "#0d0096",
+                "secondary-fixed": "#6ffbbe",
+                "on-secondary": "#003824",
+                "inverse-on-surface": "#303038",
+                "primary-container": "#8083ff",
+                "secondary-fixed-dim": "#4edea3",
+                "error": "#ffb4ab",
+                "on-error": "#690005",
+                "tertiary-fixed-dim": "#ffb95f",
+                "surface-tint": "#c0c1ff",
+                "surface-variant": "#34343d",
+                "on-surface-variant": "#c7c4d7",
+                "tertiary": "#ffb95f",
+                "on-secondary-fixed": "#002113",
+                "on-background": "#e4e1ed",
+                "surface-container": "#1f1f27",
+                "on-tertiary-fixed": "#2a1700",
+                "tertiary-fixed": "#ffddb8",
+                "surface-container-lowest": "#0d0d15",
+                "primary": "#c0c1ff",
+                "surface-bright": "#393841",
+                "on-primary-fixed-variant": "#2f2ebe",
+                "on-surface": "#e4e1ed",
+                "on-tertiary-container": "#3e2400",
+                "surface": "#13131b",
+                "surface-container-low": "#1b1b23",
+                "on-secondary-container": "#00311f",
+                "on-tertiary-fixed-variant": "#653e00",
+                "tertiary-container": "#ca8100",
+                "on-primary": "#1000a9",
+                "outline": "#908fa0",
+                "surface-dim": "#13131b",
+                "error-container": "#93000a",
+                "surface-container-highest": "#34343d"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "md": "24px",
+                "margin": "32px",
+                "gutter": "24px",
+                "sm": "12px",
+                "xs": "4px",
+                "base": "8px",
+                "lg": "48px",
+                "xl": "80px"
+            },
+            "fontFamily": {
+                "label-caps": ["Geist"],
+                "label-md": ["Geist"],
+                "body-sm": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "display": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #13131b;
+            color: #e4e1ed;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(192, 193, 255, 0.1) 0%, transparent 50%);
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, #494bd6 0%, #c0c1ff 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        .neural-line {
+            stroke: rgba(192, 193, 255, 0.15);
+            stroke-width: 0.5;
+        }
+        .neural-node {
+            fill: rgba(192, 193, 255, 0.4);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-lg text-body-lg">
+<!-- TopAppBar -->
+<header class="bg-background/80 backdrop-blur-xl fixed top-0 w-full z-[100] border-b border-white/10 shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center w-full px-margin py-4 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">drive_file_rename</span>
+<span class="font-display text-headline-md font-bold text-primary tracking-tight">RecallAI</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-semibold font-label-md text-label-md transition-colors" href="#">Features</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Pricing</a>
+<button class="btn-primary-gradient px-6 py-2 rounded-full text-on-primary font-label-md text-label-md font-bold hover:brightness-110 active:scale-95 transition-all">
+                    Sign In
+                </button>
+</nav>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+<!-- Animated Background Placeholder -->
+<div class="absolute inset-0 -z-10 opacity-40">
+
+</div>
+<!-- Floating Decoration Cards -->
+<div class="absolute top-[20%] left-[10%] glass-card p-4 rounded-xl rotate-[-12deg] hidden lg:block animate-pulse">
+<span class="material-symbols-outlined text-secondary">movie</span>
+<div class="h-2 w-12 bg-white/10 mt-2 rounded"></div>
+</div>
+<div class="absolute bottom-[30%] right-[10%] glass-card p-6 rounded-xl rotate-[8deg] hidden lg:block">
+<span class="material-symbols-outlined text-primary">description</span>
+<div class="h-2 w-16 bg-white/10 mt-2 rounded"></div>
+<div class="h-2 w-10 bg-white/10 mt-2 rounded"></div>
+</div>
+<div class="max-w-4xl mx-auto space-y-8 relative z-10">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary font-label-caps text-label-caps uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+                    AI-Powered Memory Optimization
+                </div>
+<h1 class="font-display text-display md:text-[84px] leading-tight text-on-surface">
+                    Stop Forgetting What <br/> <span class="text-primary italic">You Learn.</span>
+</h1>
+<p class="font-body-lg text-body-lg md:text-[20px] text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    Turn YouTube videos, PDFs, blogs, and research papers into AI-generated quizzes and adaptive learning paths.
+                </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4 pt-4">
+<button class="btn-primary-gradient px-10 py-4 rounded-full text-on-primary font-bold text-lg hover:scale-105 active:scale-95 transition-all w-full md:w-auto shadow-lg shadow-primary/20">
+                        Build My First Challenge
+                    </button>
+<button class="glass-card px-10 py-4 rounded-full text-on-surface font-semibold text-lg hover:bg-white/5 transition-all w-full md:w-auto flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                        Watch Demo
+                    </button>
+</div>
+</div>
+</section>
+<!-- Feature Grid (Bento) -->
+<section class="max-w-7xl mx-auto px-margin py-xl">
+<div class="mb-lg space-y-4">
+<h2 class="font-display text-headline-lg text-on-surface">The Learning Engine</h2>
+<p class="font-body-lg text-on-surface-variant max-w-xl">Six core intelligence modules designed to bridge the gap between information and long-term retention.</p>
+</div>
+<div class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible no-scrollbar pb-6 md:pb-0 px-4 -mx-4 md:px-0 md:mx-0">
+<!-- Learn From Anything -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">universal_currency_alt</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">Learn From Anything</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Upload PDFs, paste links, or sync your YouTube watch history. We extract the core knowledge instantly.
+                        </p>
+</div>
+</div>
+<!-- AI Quiz Generator -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Quiz Generator</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Generate multiple-choice, open-ended, and coding challenges based on your uploaded content.
+                        </p>
+</div>
+</div>
+<!-- AI Flashcards -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">style</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Flashcards</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Dynamic Spaced Repetition (SRS) cards that evolve as you master concepts over time.
+                        </p>
+</div>
+</div>
+<!-- Adaptive Learning -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-error/10 flex items-center justify-center text-error transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">route</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">Adaptive Learning</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            The system detects your knowledge gaps and adjusts the difficulty and content flow automatically.
+                        </p>
+</div>
+</div>
+<!-- Knowledge Graph -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed-dim/10 flex items-center justify-center text-primary-fixed-dim transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">Knowledge Graph</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            See how your topics connect. Visualize the invisible threads between physics, art history, and math.
+                        </p>
+</div>
+</div>
+<!-- AI Tutor -->
+<div class="min-w-[300px] glass-card p-8 rounded-3xl flex flex-col gap-6 group hover:border-primary/40 transition-all cursor-default">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed/10 flex items-center justify-center text-secondary-fixed transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">support_agent</span>
+</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Tutor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Stuck on a concept? Chat with a personal tutor that has context on all your uploaded documents.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Visualization (Dashboard Preview) -->
+<section class="max-w-7xl mx-auto px-margin py-xl relative">
+<div class="glass-card rounded-[40px] p-8 md:p-16 overflow-hidden relative border-white/5 bg-gradient-to-br from-surface-container-low to-background">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<h2 class="font-display text-headline-lg md:text-[44px] leading-tight text-on-surface">
+                            Visualise Your Mind's <br/> <span class="text-secondary">Expansion</span>
+</h2>
+<p class="text-on-surface-variant font-body-lg">
+                            Watch your personal Knowledge Graph grow as you master new domains. Every card you flip and every quiz you pass strengthens the synapses in your digital brain.
+                        </p>
+<div class="flex items-center gap-8">
+<div>
+<div class="text-headline-md text-primary font-bold">14.2k</div>
+<div class="text-label-caps font-label-caps text-on-surface-variant uppercase">Concepts Mapped</div>
+</div>
+<div class="h-10 w-[1px] bg-white/10"></div>
+<div>
+<div class="text-headline-md text-secondary font-bold">94%</div>
+<div class="text-label-caps font-label-caps text-on-surface-variant uppercase">Retention Rate</div>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="aspect-square glass-card rounded-3xl overflow-hidden shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+<div class="w-full h-full bg-cover bg-center" data-alt="A sophisticated 3D visualization of a knowledge graph with glowing nodes and interconnecting lines in indigo and emerald green. The visualization is presented on a high-end digital interface with glassmorphic elements and a dark, charcoal background. Soft volumetric lighting highlights the complex web of connections, creating a sense of deep intelligence and structured information." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6Gh8cJid9L1zgDxic84Lwo0tizvJ2ev2eKO9QOBlcCRhMpwVRQBedrdG9GkmeJo54YKC5HAHhR6ijVkQER2vczUmLuUfsVfy0wXVZlMXzId2YvLTO1byE0bKXTX34g-na8-q4VdDnC7cdUa2k3eT4DqG9wY_KQQl9MneQspRq6Ls1B7xmjqeb4BQQ-CONkWoIqjMJoTHxZFg-dHfCXPyrxvxBDfajNnS_r-RlP7_nplZeki64KXvMqbpeJEMBmvZeyqH87DRG4qg')"></div>
+</div>
+<div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl animate-bounce">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<div class="text-sm font-bold">New Connection</div>
+<div class="text-xs text-on-surface-variant">Quantum Theory → Calculus</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-margin py-xl text-center">
+<div class="glass-card py-20 px-8 rounded-[3rem] space-y-10 relative overflow-hidden">
+<div class="absolute inset-0 -z-10 opacity-30 pointer-events-none">
+
+</div>
+<h2 class="font-display text-headline-lg md:text-[56px] text-on-surface max-w-2xl mx-auto">
+                    Ready to achieve <span class="text-primary">perfect recall?</span>
+</h2>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="btn-primary-gradient px-12 py-5 rounded-full text-on-primary font-bold text-xl hover:scale-105 active:scale-95 transition-all">
+                        Start Learning For Free
+                    </button>
+<p class="text-on-surface-variant font-label-md">No credit card required. 7-day free trial of Pro.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/30 w-full pt-xl pb-lg mt-xl">
+<div class="max-w-7xl mx-auto px-margin flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">drive_file_rename</span>
+<span class="font-display text-headline-md font-bold text-on-surface">RecallAI</span>
+</div>
+<p class="text-on-surface-variant font-body-sm max-w-xs">© 2024 RecallAI. Master your mind. Built for lifelong learners.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-6">
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Product</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">API Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Pricing</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Legal</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Security</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Community</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Twitter</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Discord</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Support</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell (BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-background/90 backdrop-blur-2xl border-t border-white/10 flex justify-around items-center px-4 pt-3 pb-6 md:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.5)] rounded-t-xl">
+<a class="text-primary flex flex-col items-center gap-xs scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="text-on-surface-variant hover:text-secondary flex flex-col items-center gap-xs transition-all" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label-caps text-label-caps">Graph</span>
+</a>
+<a class="text-on-surface-variant hover:text-secondary flex flex-col items-center gap-xs transition-all" href="#">
+<span class="material-symbols-outlined text-primary scale-125">add_circle</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</a>
+<a class="text-on-surface-variant hover:text-secondary flex flex-col items-center gap-xs transition-all" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-caps text-label-caps">Cards</span>
+</a>
+<a class="text-on-surface-variant hover:text-secondary flex flex-col items-center gap-xs transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Subtle mouse tracking for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>
