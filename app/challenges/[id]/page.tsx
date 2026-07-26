@@ -1,15 +1,16 @@
 import { getChallengeById } from '../../../services/challenge.service'
 import Link from 'next/link'
 
-type Props = { params: { id: string } }
+type Props = { params: Promise<{ id: string }> }
 
 export default async function ChallengePage({ params }: Props) {
-  const item = await getChallengeById(params.id)
+  const { id } = await params
+  const item = await getChallengeById(id)
   if (!item) {
     return (
       <main className="max-w-[900px] mx-auto px-8 py-12">
         <h1 className="text-2xl font-bold">Challenge not found</h1>
-        <p className="mt-4">No mock data for id: {params.id}</p>
+        <p className="mt-4">No mock data for id: {id}</p>
         <Link href="/challenges" className="text-primary mt-4 inline-block">Back to challenges</Link>
       </main>
     )
